@@ -16,12 +16,12 @@ The application is also CDS Hooks enabled to ensure that those results can be ho
 
 ![hooks-card](doc_img/hooks-card.png)
 
-### Instructions
+## Instructions
 These examples are built with NodeJS which must be installed on your computer. On MacOS, one way is through Homebrew with the command <code>brew install node</code>.
 
 To create the servers needed for the examples, first install the http-server tool using the command <code>npm install -g http-server</code>.
 
-#### Create data server
+### Create data server
 
 This example will use the [HSPC Sandbox](https://sandbox.hspconsortium.org/).
 
@@ -30,7 +30,7 @@ This example will use the [HSPC Sandbox](https://sandbox.hspconsortium.org/).
 
 ![sandbox options](doc_img/sandbox-options.png)
 
-#### Launch part1-lab
+### Launch part1-lab
 Navigate to the home directory of part1-lab and launch a new server with the command <code>http-server -p 8080</code>.
 
 Navigate your web browser to http://localhost:8080/ in order to view the example.
@@ -41,7 +41,7 @@ Navigate your web browser to http://localhost:8080/ in order to view the example
 
 ![open-url-field](doc_img/open-url-field.png)
 
-#### Launch part2-ehr
+### Launch part2-ehr
 
 Register the app manually within your sandbox using the following parameters and leave the rest with their defaults:
 
