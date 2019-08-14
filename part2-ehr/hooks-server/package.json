@@ -1,18 +1,18 @@
 {
-  "name": "fhir-lab-reports-genetic",
+  "name": "fhir-lab-reports",
   "version": "1.0.0",
-  "description": "Hook services for the resuls of genetic test results",
+  "description": "Hook services for the resuls of pharmacogenomic test result",
   "main": "index.js",
   "scripts": {
     "start-server": "nodemon ./index.js localhost 3000"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mwatkin8/fhir-lab-reports-genetic"
+    "url": "git+https://github.com/mwatkin8/fhir-lab-reports"
   },
   "author": "Michael Watkins",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/mwatkin8/fhir-lab-reports-genetic#readme",
+  "homepage": "https://github.com/mwatkin8/fhir-lab-reports#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3"

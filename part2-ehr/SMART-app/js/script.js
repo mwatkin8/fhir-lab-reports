@@ -390,8 +390,7 @@ async function displayFHIR(){
     catch{}
     document.getElementById('main-content').innerHTML = ' <div id="frame">' +
         '<div class="main-about"><h5>About FHIR</h5><p>HL7\'s <a href="https://www.hl7.org/fhir/overview.html">FHIR</a> (Fast Healthcare Interoperable Resources) standard is a widely-adopted data standard which abstracts clinical ' +
-        'scenarios into separate resources. These resources are linked together to describe a given scenario.</p><p>That means that apps, like this one, know exactly how to look for a certain piece of information and won\'t crash just because it\'s called something different ' +
-        'or stored in a different way on a particular hospital system.</p><p>The following are all the resources in the patient\'s history which are associated with this lab report.</p></div>' +
+        'scenarios into separate resources. These resources are linked together to describe a given scenario.</p><p>The following are all the resources in the patient\'s history which are associated with this lab report.</p></div><br>' +
         '<div class="row fhir-box">' +
         '    <div class="col-md-5 order-md-2 mb-4">' +
         '      <ul>' +
