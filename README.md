@@ -17,9 +17,9 @@ The application is also CDS Hooks enabled to ensure that those results can be ho
 ![hooks-card](doc_img/hooks-card.png)
 
 ## Instructions
-These examples are built with NodeJS which must be installed on your computer. On MacOS, one way is through Homebrew with the command <code>brew install node</code>.
+This project uses a Docker image to include the needed dependencies for the app server.  Follow [this guide](https://docs.docker.com/install/) to install Docker on your machine and check installation success with docker -v. Then follow [this guide](https://docs.docker.com/compose/install/) to install Docker Compose and check that installation with docker-compose -v.
 
-To create the servers needed for the examples, first install the http-server tool using the command <code>npm install -g http-server</code>.
+Launch the server with the command <code>docker-compose up --build</code>
 
 ### Create data server
 
@@ -31,9 +31,7 @@ This example will use the [HSPC Sandbox](https://sandbox.hspconsortium.org/).
 ![sandbox options](doc_img/sandbox-options.png)
 
 ### Launch part1-lab
-Navigate to the home directory of part1-lab and launch a new server with the command <code>http-server -p 8080</code>.
-
-Navigate your web browser to http://localhost:8080/ in order to view the example.
+Navigate your web browser to http://localhost:3000/lab in order to view the example.
 
 **Important!!** Once on the part1-lab page, <u>before</u> you submit the sample form, enter your sandbox open FHIR endpoint URL into the server field above the submit button.
 
@@ -46,13 +44,13 @@ Navigate your web browser to http://localhost:8080/ in order to view the example
 Register the app manually within your sandbox using the following parameters and leave the rest with their defaults:
 
     Launch URL
-    http://localhost:8000/launch.html
+    http://localhost:3000/smart-launch
     Redirect URL
-    http://localhost:8000/index.html
+    http://localhost:3000/
     Scopes
     launch patient/*.read
 
-![register-app](doc_img/register-app.png)
+![register-app](doc_img/app-details.png)
 
 Also feel free to use <i>doc_img/icon-for-hspc.png</i> as the image for the app.
 
@@ -61,15 +59,6 @@ Set the client ID in <i>js/launch-smart.js</i> to the one given by the SMART ser
 ![client-id](doc_img/client-id.png)
 
 ![client-id-code](doc_img/client-id-code.png)
-
-Navigate to the <i>SMART-app</i> directory of part2-ehr and launch a new server with the command <code>http-server -p 8000</code>.
-
-Navigate to the <i>hooks-server</i> directory of part2-ehr to launch
-the server which will make our app discoverable to CDS Hooks services.
-
-We will use Docker because this server has additional dependencies.  Follow [this guide](https://docs.docker.com/install/) to install Docker on your machine and check installation success with docker -v. Then follow [this guide](https://docs.docker.com/compose/install/) to install Docker Compose and check that installation with docker-compose -v.
-
-Launch the server with the command <code>docker-compose up --build</code>
 
 Launch the CDS Hooks Sandbox app from the HSPC app gallery.
 
