@@ -29,8 +29,10 @@ function launch(){
     // To keep things flexible, let's construct the loadPatient URL by taking the base of the
     // current URL and replace "loadPatient.html" with "index.html".
     let launchUri = window.location.protocol + "//" + window.location.host + window.location.pathname;
-    let redirectUri = launchUri.replace("launch.html","index.html");
-
+    let re = new RegExp('\\w+://\\w+:\\d+/');
+    let array = re.exec(launchUri);
+    let redirectUri = array[0];
+    
     // FHIR Service Conformance Statement URL
     let conformanceUri = serviceUri + "/metadata";
 

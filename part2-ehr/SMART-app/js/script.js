@@ -10,6 +10,7 @@ function loadPatient(){
     let secret = params.secret;
     window.serviceUri = params.serviceUri;
     if (params.hasOwnProperty('reportID')){
+        console.log('HAS REPORT ID');
         window.reportID = params.reportID;
         document.getElementById('select-message').innerText = 'Loading report...';
     }
@@ -82,7 +83,7 @@ async function initialize(){
     document.getElementById('main-content').innerHTML = '<img style="padding-left:350px;" src="../img/loader.gif"/>';
     let url = window.serviceUri + '/DiagnosticReport?_id=' + window.reportID;
     let bundle = await getResource(url);
-    let report =  bundle.entry[0].resource;
+    let report = bundle.entry[0].resource;
     let test = report.code.coding[0].display;
     let practitioner_id = report.performer[0].reference;
     url = window.serviceUri + '/' + practitioner_id;
@@ -90,7 +91,17 @@ async function initialize(){
     let practitioner_name = practitioner.name[0].given[0] + ' ' + practitioner.name[0].family;
     let practitioner_details = '(' + practitioner.identifier[0].value + ', ' + practitioner.identifier[0].system + ')';
     let conclusion = report.conclusion;
-    let background_info = await parseConclusion(conclusion);
+    let background_info = '';
+    let genotype_id = report.result[2].reference;
+    let genotype = await getResource(window.serviceUri + '/' + genotype_id);
+    background_info += '<p><b>Test Result: </b>' + genotype.valueString + '</p>';
+    let interpretation_id = report.result[1].reference;
+    let interpretation = await getResource(window.serviceUri + '/' + interpretation_id);
+    background_info += '<p><b>Interpretation: </b>' + interpretation.valueString + '</p>';
+    let implication_id = report.result[0].reference;
+    let implication = await getResource(window.serviceUri + '/' + implication_id);
+    background_info += '<p><b>Implication: </b>' + implication.valueString + '</p>';
+    background_info = await parseConclusion(background_info, conclusion);
     document.getElementById('main-content').innerHTML = '<div id="frame">' +
         '<div class="main-about">' +
         '<p><b>Test:</b> <span class="summary-header">' + test + '</span></p>' +
@@ -254,6 +265,7 @@ async function displaySummary(){
 }
 
 function parseConclusion(background_info, conclusion){
+    console.log(conclusion);
     let l = conclusion.split('\n\n');
     for (let i = 1; i < l.length; i++) {
         let line = l[i];
@@ -351,13 +363,13 @@ async function displayHooks(){
     catch{}
     document.getElementById('main-content').innerHTML = '<img style="padding-left:350px;" src="../img/loader.gif"/>';
     //Get the service PlanDefinition resource
-    let url = window.serviceUri + '/PlanDefinition?url=fhir_lab_reports_genetic_service';
+    let url = window.serviceUri + '/PlanDefinition?url=fhir_lab_reports_service';
     let bundle = await getResource(url);
     let service =  bundle.entry[0].resource;
     delete service.text;
 
     //Get the response card RequestGroup resource
-    url = window.serviceUri + '/RequestGroup?subject=' + window.patient_id + '&code=fhir_lab_reports_genetic_response';
+    url = window.serviceUri + '/RequestGroup?subject=' + window.patient_id + '&code=fhir_lab_reports_response';
     bundle = await getResource(url);
     let card =  bundle.entry[0].resource;
     delete card.text;

@@ -619,7 +619,7 @@ async function createHookResponse(patient, diag_report, res_implication, server)
     t.action[0].action[0].prefix = diag_report.toString();
     t.action[0].action[0].title = 'Launch App';
     t.action[0].action[0].description = 'smart';
-    t.action[0].action[0].code[0].text = 'http://localhost:8000/launch.html';
+    t.action[0].action[0].code[0].text = 'http://localhost:3000/smart-launch';
     let entry = JSON.parse('{\"resource\": \"\", \"request\": {\"method\": \"POST\", \"url\": \"RequestGroup\"}}');
     entry.resource = t;
     return postResource(entry,server);
